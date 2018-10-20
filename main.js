@@ -1,12 +1,17 @@
 'use strict';
 
+//!!!
+// recents === recently made changes
 
+var gettingHere = 'getting here?';
+console.log(gettingHere);
 
 var globalCorrectArray = [];
+var countryArr = [];
 
 //---------------------- Country Constructor -----------------------------------
 
-var CountryObj = function(country, correctAnswer, hint, img) {
+var CountryObj = function(country, correctAnswer, hint) {
   // ----borrowed code (!new.target) throw ... -----
   if(!new.target) throw 'CountryObj must be called with new';
   this.country = country;
@@ -16,20 +21,16 @@ var CountryObj = function(country, correctAnswer, hint, img) {
   this.space = '';
   //   this.div = document.createElement(`div${this.country}`);
   //this local div will get appended to the main div.
-
+  countryArr.push(this);
   globalCorrectArray.push(this.correctArray);
 };
 
-CountryObj.prototype.log = function(){
-//   console.log(this.country);
-};
 
 
 // consider renaming it, as not .elseif
 ///---------------------------.ELSE IF PROTOTYPE --------------------------------------------
 CountryObj.prototype.elseif = function (askAgain){
   var doYouWantHint = prompt('do you want a hint? answer with yes or no, please ');
-
   if(doYouWantHint === 'yes'){
     alert(this.hint);
   }
@@ -128,6 +129,17 @@ var brazilCountry = new CountryObj('brazil', 'yes', 'Rio has tons of beauty and 
 var franceCountry = new CountryObj('france', 'yes', 'their southern coast sure is amazing');
 var unitedArabEmirates = new CountryObj('United Arab Emirates', 'yes', 'who learns to snowboard in the desert?! An absurd idea!');
 
+//recents
+// made the following code then realized i don't think it's necessary
+// var ElGetter = document.getElementById("questions");
+// for(var i = 0; i < countryArr.length; i++){
+//   console.log('how many');
+//   var ElForCountry = document.createElement('li');
+//   ElForCountry.textContent = `have i been to ${countryArr[i].country}`;
+//   ElGetter.appendChild(ElForCountry);
+// }
+
+
 // all countries array
 var allcountries = [germanCountry, canadaCountry, brazilCountry, franceCountry, unitedArabEmirates];
 
@@ -182,6 +194,7 @@ var singleCountryCreateEls = function(objCountry) {
     //so yes that creates the right amount of Els, what is the best way to manage them? A simple array huh?
     elArray[i].innerHTML = arrOfDescripts[i] + arrOfProperties[i];
     divTargetter.appendChild(elArray[i]);
+    
   }
 };
 
@@ -213,10 +226,14 @@ singleCountryCreateEls(unitedArabEmirates);
 alert('now please guess the states i\'ve lived in, there are 5');
 alert('please input in lowercase two letter acronymn format, for example ak for arkansas');
 
+var statesBeen= [];
+
+
 var State = function (name, message) {
   this.name = name;
   this.message = message;
   this.success = false;
+  statesBeen.push(this);
 };
 
 var wa = new State('wa','live now');
@@ -225,7 +242,17 @@ var nv = new State('nv', 'so hot and trashy');
 var or = new State('or', 'love it there');
 var fl = new State('fl', 'too hot and flat for me');
 
-var statesBeen= [wa, ca, nv, or, fl];
+//recents
+// var stateUl = document.getElementById("stateQuestions");
+
+// for(var i = 0; i < statesBeen.length; i++){
+// var ElStateContentGenerator = document.createElement('li');
+// ElStateContentGenerator.textContent = `what states have i been to ${statesBeen[i]}`
+
+// }
+
+//recents commented out the following line for now...
+// var statesBeen= [wa, ca, nv, or, fl];
 // console.log(statesBeen, 'statesbeen', 'that works');
 
 let returnedState;
